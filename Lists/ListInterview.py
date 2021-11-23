@@ -61,7 +61,7 @@ def isUnique(list):
         a.append(i)
   return True
 
-print(isUnique(myList))
+print(isUnique(mylist))
 
 
 
