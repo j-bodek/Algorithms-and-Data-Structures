@@ -101,12 +101,50 @@ def reverse(array):
 # 8th question
 # What is the runtime of the below code?
 
+def factorial(n):
+    if n < 0: # constant 
+        return -1 # constant 
+    elif n == 0: # constant 
+        return 1 # constant 
+    else:
+        return n * factorial(n-1)
+
+# runtime will be O(n)
+
+#----------------------------------------------------------------
+
+# 9th question
+# What is the runtime of the below code?
+
+def allFib(n):
+    for i in range(n): # linear O(n)
+        print(str(i)+":, " + str(fib(i))) # O(2^i)
+# so runtime will be O(2^1) + O(2^2) + ... + O(2^n) = 1*((1-2^n)/(1-2)) = O(2^n)
+
+def fib(n):
+    if n <= 0: # constant
+        return 0 # constant
+    elif n == 1: # constant
+        return 1 # constant
+    return fib(n-1) + fib(n-2) # O(2^n)
 
 
+#----------------------------------------------------------------
 
-
-
-
+# 9th question
+# What is the runtime of the below code?
+ 
+def powersOf2(n):
+    if n < 1:  # constant
+        return 0   # constant
+    elif n == 1:  # constant
+        print(1)  # constant
+        return 1  # constant
+    else: 
+        prev = powersOf2(int(n/2)) # logaritmic O(log n)
+        curr = prev*2  # constant 
+        print(curr)  # constant
+        return curr  # constant
 
 
 
