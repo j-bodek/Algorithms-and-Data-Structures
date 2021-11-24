@@ -48,16 +48,96 @@ class SinglyLinkedList:
                 
                 if previousNode == self.tail:
                     self.tail = newNode
+                             
+                    
+    # TRAVERSE SINGLY LINKED LIST 
+    def traverseSinglyLinkedList(self):
+        if not self.head:
+            print('Single linked list does not exist')
+        else:
+            node = self.head
+            while node:
+                print(node.value)
+                node = node.next
+                
+    # SEARCHING ELEMENT IN SINGLY LINKED LIST
+    def searchElement(self, element):
+        if not self.head:
+            print(f'{element} does not exist in list')
+        else:
+            node = self.head
+            while node:
+                if node.value == element: 
+                    print(f'{node.value} exist in list!')
+                    break
+                else:
+                    node = node.next
+            print(f'{element} does not exist in list')
+            
+    # DELETE NODE IN SINGLY LINKED LIST
+    def delete(self, element_location):
+        if not self.head:
+            print('Single linked list is empty')
+        else:
+            if element_location == 0: # deleting first element
+                if self.head == self.tail: #only one node in list
+                    self.head,self.tail = None,None
+                else:
+                    self.head = self.head.next
+            elif element_location == -1: # deleting last element
+                if self.head == self.tail: #only one node in list
+                    self.head,self.tail = None,None
+                else:
+                    node = self.head
+                    while node:
+                        if node.next == self.tail: break
+                        node = node.next
+                    node.next = None
+                    self.tail = node
+            else: # deleting any index element
+                previousNode = self.head
+                for i in range(element_location-1):
+                    previousNode = previousNode.next
+                
+                deleteNode = previousNode.next
+                previousNode.next = deleteNode.next
+                
+    # CLEAR LINKED LIST
+    def clear(self):
+        if not self.head:
+            print('Single linked list is empty!')
+        else:
+            self.head,self.tail = None,None
+            
         
         
 # create new empty linked list and nodes
 singlyLinkedList = SinglyLinkedList()
+
 # insert 1 to first position in linked list
 singlyLinkedList.insert(1, 0) 
+
 # insert 5 to last position in linked list
 singlyLinkedList.insert(5, -1) 
+
 # insert 8 to second position in linked list
 singlyLinkedList.insert(8, 1) 
 
 # print linked list elements 
 print([node.value for node in singlyLinkedList])
+
+# Traverse through list
+singlyLinkedList.traverseSinglyLinkedList()
+
+# Search for element in list
+singlyLinkedList.searchElement(9)
+
+# Delete element in list
+singlyLinkedList.delete(0)
+print([node.value for node in singlyLinkedList])
+
+# Delete entire singly list (clear list)
+singlyLinkedList.clear()
+print([node.value for node in singlyLinkedList])
+
+
