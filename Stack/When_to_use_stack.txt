@@ -1,0 +1,11 @@
+
+
+
+Use:
+-LIFO (Last In First Out) functionality (you have to remove all previous elements to enter last element)
+- The chance of data corruption is minimum 
+
+Avoid:
+- Random access is not possible (we can only access the first element)
+  
+
