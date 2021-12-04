@@ -99,20 +99,172 @@ print('------------------LevelOrder_TRAVERSAL------------------')
 # rootNode => leftChild => rightChild => leftHot => rightHot => leftCold => rightCold
 # We will create levelOrderTraversal using Queue 
 
-from Queues.QueueLinkedList import Queue
+import sys
+import os
+sys.path.append(os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'Queues')))
+from QueueLinkedList import Queue
 def levelOrderTraversal(rootnode):
     if not rootnode: return 
     customeQueue = Queue()
     customeQueue.enqueue(rootnode)
     while not customeQueue.isEmpty():
         root = customeQueue.dequeue()
-        print(root.value.data)
-        if root.value.leftChild: # root.value comes from queue class
-            customeQueue.enqueue(root.value.leftChild)
-        if root.value.rightChild: # root.value comes from queue class
-            customeQueue.enqueue(root.value.rightChild)
+        print(root.data)
+        if root.leftChild:
+            customeQueue.enqueue(root.leftChild)
+        if root.rightChild:
+            customeQueue.enqueue(root.rightChild)
 
 levelOrderTraversal(newBinaryTree)
+
+
+print('--------------------------------LINEAR_SEARCHING_TREE--------------------------------')
+
+# This searching algorithm use level traversal 
+def searchBinaryTree(rootNode, Value):
+    if not rootNode: return 
+    customeQueue = Queue()
+    customeQueue.enqueue(rootNode)
+    while not customeQueue.isEmpty(): 
+        root = customeQueue.dequeue()
+        if root.data == Value: return True
+        if root.leftChild:
+            customeQueue.enqueue(root.leftChild)
+        if root.rightChild:
+            customeQueue.enqueue(root.rightChild)
+    return False
+
+print(searchBinaryTree(newBinaryTree, 'Pepsi'))
+
+
+# INSERT NODE TO BINARY TREE
+# Possibilities:
+# - RootNode is blank
+# - The tree exists and we have to look for the first vacant place
+# (we use level order traversal to find first node that have less then two childrens and then add new one as his child)
+
+def insert(rootNode, newNode):
+    if not rootNode: return
+    customeQueue = Queue()
+    customeQueue.enqueue(rootNode)
+    while not customeQueue.isEmpty():
+        root = customeQueue.dequeue()
+        if root.leftChild:
+            customeQueue.enqueue(root.leftChild)
+        if root.rightChild:
+            customeQueue.enqueue(root.rightChild)
+        if not root.leftChild:
+            root.leftChild = newNode
+            return
+        if not root.rightChild:
+            root.rightChild = newNode
+            return
+        
+insert(newBinaryTree, TreeNode('With Ice'))
+levelOrderTraversal(newBinaryTree)
+
+
+print('------------------GET_DEEPEST_NODE------------------')
+
+def getDeepestNode(rootNode):
+    if not rootNode: return
+    customeQueue = Queue()
+    customeQueue.enqueue(rootNode)
+    while not customeQueue.isEmpty():
+        root = customeQueue.dequeue()
+        if root.leftChild:
+            customeQueue.enqueue(root.leftChild)
+        if root.rightChild:
+            customeQueue.enqueue(root.rightChild)
+    deepestNode = root
+    return root
+    
+
+print('------------------DELETE_DEEPEST_NODE------------------')
+
+
+def deleteDeepestNode(rootNode, deepestNode):
+    if not rootNode: return
+    customeQueue = Queue()
+    customeQueue.enqueue(rootNode)
+    while not customeQueue.isEmpty(): 
+        root = customeQueue.dequeue()
+        if root is deepestNode: 
+            root = None
+            return
+        if root.rightChild:
+            if root.rightChild is deepestNode: 
+                root.rightChild = None
+                return
+            else:
+                customeQueue.enqueue(root.rightChild) 
+        if root.leftChild:
+            if root.leftChild is deepestNode: 
+                root.leftChild = None
+                return
+            else:
+                customeQueue.enqueue(root.leftChild) 
+            
+            
+def deleteNode(rootNode, deleteNode):
+    if not rootNode: return
+    customeQueue = Queue()
+    customeQueue.enqueue(rootNode)
+    while not customeQueue.empty():
+        root = customeQueue.dequeue()
+        if not root.data == deleteNode:
+            deepestNode = getDeepestNode(rootNode)
+            root.data = deepestNode.data
+            deleteDeepestNode(rootNode,deepestNode)
+        if root.leftChild:
+            customeQueue.enqueue(root.leftChild)
+        if root.rightChild:
+            customeQueue.enqueue(root.rightChild)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

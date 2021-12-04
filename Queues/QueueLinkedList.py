@@ -49,8 +49,10 @@ class Queue:
     def dequeue(self):  # time complexity is O(1)
         if self.isEmpty(): return 'Queue is empty'
         dequeueNode = self.items.head
-        if self.items.head == self.items.tail: self.items.head, self.items.tail = None, None
-        self.items.head = self.items.head.next
+        if self.items.head == self.items.tail: 
+            self.items.head, self.items.tail = None, None
+        else:
+            self.items.head = self.items.head.next
         return dequeueNode.value
 
     # Peek method
@@ -63,20 +65,20 @@ class Queue:
         self.items.head, self.items.tail = None, None
 
 
-# Create new Queue 
-queue = Queue()
-# Check if queue is empty
-print(f'Is queue empty? => {queue.isEmpty()}')
-#Enqueue element to queue
-queue.enqueue(4)
-queue.enqueue(41)
-queue.enqueue(12)
-print(queue)
-# Dequeue element from queue
-print(f'Dequeued element => {queue.dequeue()}')
-print(queue)
-# Peek element from queue
-print(f'Peek element => {queue.peek()}')
+# # Create new Queue 
+# queue = Queue()
+# # Check if queue is empty
+# print(f'Is queue empty? => {queue.isEmpty()}')
+# #Enqueue element to queue
+# queue.enqueue(4)
+# queue.enqueue(41)
+# queue.enqueue(12)
+# print(queue)
+# # Dequeue element from queue
+# print(f'Dequeued element => {queue.dequeue()}')
+# print(queue)
+# # Peek element from queue
+# print(f'Peek element => {queue.peek()}')
 
 
 
