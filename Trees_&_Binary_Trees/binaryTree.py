@@ -32,6 +32,29 @@
 # - Traverse all nodes 
 # - Deletion of tree 
 
+
+
+
+# Binary Tree (Python list vs Linked List)
+#---------------------------------------------------------------
+# Create Binary Tree O(1), O(n) - python list
+# Create Binary Tree O(1), O(1) - Linked list
+#---------------------------------------------------------------
+# Insert a node to Binarty tree O(1), O(1) - Python list
+# Insert a node to Binarty tree O(n), O(n) - Linked list
+#---------------------------------------------------------------
+# Delete a node from Binary Tree O(n), O(1) - Python list
+# Delete a node from Binary Tree O(n), O(n) - Linked list
+#---------------------------------------------------------------
+# Search for a node in Binary Tree O(n), O(1) - Python list
+# Search for a node in Binary Tree O(n), O(n) - Linked list
+#---------------------------------------------------------------
+#Traverse Binary Tree O(n), O(1) - Python list
+#Traverse Binary Tree O(n), O(n) - Linked list
+#---------------------------------------------------------------
+# Delete entire Binary Tree O(1), O(1) - Python list
+# Delete entire Binary Tree O(1), O(1) - Linked list
+
 class TreeNode:
     def __init__(self,data):
         self.leftChild = None
@@ -220,6 +243,11 @@ def deleteNode(rootNode, deleteNode):
             customeQueue.enqueue(root.leftChild)
         if root.rightChild:
             customeQueue.enqueue(root.rightChild)
+            
+            
+def deleteBinaryTree(rootNode):
+    if not rootNode: return
+    rootNode.data,rootNode.leftChild,rootNode.rightChild = None, None, None
 
 
 
