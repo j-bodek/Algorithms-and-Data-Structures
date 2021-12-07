@@ -34,6 +34,7 @@ print(tree)
 # Create new children nodes (for cold Node)
 pepsi = TreeNode('Pepsi',[])
 sprite = TreeNode('Sprite',[])
+fanta = TreeNode('Fanta',[])
 
 # Create new children nodes (for hot Node)
 tea = TreeNode('Tea',[])
@@ -45,6 +46,7 @@ hot.addChild(coffee)
 #Add children nodes to cold drink
 cold.addChild(pepsi)
 cold.addChild(sprite)
+cold.addChild(fanta)
 
 print('------------------FULL_TREE------------------')
 print(tree)
