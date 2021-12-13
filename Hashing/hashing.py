@@ -56,9 +56,33 @@ print(modASCII("ABC", 24))
 
 
 
+# PROS AND CONS OF COLLISION RESOLUTION TECHNIQUES
+# - Direct chaining: 
+#   PROS:
+#   - Hash table never gets full
+#   CONS:
+#   - Hge linked list causes performance leaks (time complexit for search operation becomes O(n))
+#-------------------------------------------------------------------------------------------------
+# - Open addressing:
+#   PROS:
+#   - Easy Implementation
+#   CONS:
+#   - When Hash Talbe is full ,creation of new Hash table affects performance (time complexity for search operation becones O(n))
+
+# If the input size is known we always use 'Open Addressing"
+# If we perform deletion operation frequently we use 'Direct chaining'
 
 
+# PRACTICAL USE OF HASHING
+# - password verification (password gets converted to hash value)
+# - file systems (file path is mepped to physical location on disk)
 
+
+# PROS AND CONS OF HASHING
+# PROS:
+#     - On an average insertion / deletion / search operations take O(1) time
+# CONS:
+#     - When Hash function is not good enough insertion / deletion / search operations take O(n) time complexity
 
 
 
