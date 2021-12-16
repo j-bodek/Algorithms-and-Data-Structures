@@ -8,7 +8,6 @@ Selection Sort
 
 # example
 #  sorted   | unsorted
-#  sorted   | unsorted
 #           | 5,7,4,3
 #  sorted   | unsorted  
 #  3        | 5,7,4    (3 is minimum element)
