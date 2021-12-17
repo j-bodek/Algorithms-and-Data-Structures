@@ -83,25 +83,86 @@ class Graph:
     def addEdge(self, vertex, edge):
         self.graphDict[vertex].append(edge)
         
+    # Breadth First Search Traversal
+    # - BFS is aan algorithm for traversing Graph data structure. It starts at  some arbitrary 
+    # node of a graph and explores the neighbor nodes (which are at current level) first, before moving
+    # to the next level neighbors
+    def bfs(self, vertex): #==> time complexity O(V+E)
+        visitedVertexes = [vertex]
+        queue = [vertex]
+        while queue:  #==> time complexity O(V) where V is a number of vertexes
+            dequeueVertex = queue.pop(0)
+            print(dequeueVertex)
+            for adjacentVertex in self.graphDict[dequeueVertex]: #==> time complexity O(E) where E is a number of edges
+                if adjacentVertex not in visitedVertexes:
+                    visitedVertexes.append(adjacentVertex)
+                    queue.append(adjacentVertex)
+                    
+    # Depth First Search 
+    # DFS is an algorithm for traversing a graph data structure which starts selecting some arbitrary node and 
+    # explores as far as possible along each edge before backtracking (so we traverse as deep as possible and then do backtracking)
+    def dfs(self, vertex): #==> time complexity O(V+E)
+        # append vertex to stack
+        visitedVertex = [vertex]
+        stack = [vertex]
+        while stack:
+            popVertex = stack.pop()
+            print(popVertex)
+            for adjacentVertex in self.graphDict[popVertex]:
+                if adjacentVertex not in visitedVertex:
+                    visitedVertex.append(adjacentVertex)
+                    stack.append(adjacentVertex)
+        
 
 graphDict = {
     'a': ['b','c'],
-    'b': ['a','d','e'],
-    'c': ['a','e'],
-    'd': ['b','e','f'],
-    'e': ['d','f','c'],
-    'f': ['d','e'],
+    'b': ['a','d','g'],
+    'c': ['a','d','e'],
+    'd': ['b','c','f'],
+    'e': ['c','f'],
+    'f': ['d','e','g'],
+    'g': ['b','f'],
 }
+
+''' How our graph looks like?
+[A]-----[B]
+ |       |  \
+ |       |    \
+[C]-----[D]    [G]
+ |       |    /
+ |       |  /
+[E]-----[F]  
+'''
 
 graph = Graph(graphDict)
 print(graph)
-graph.addEdge(vertex='e', edge='f')
 print('-------------------------')
-print(graph)
+# graph.addEdge(vertex='e', edge='f')
+# print(graph)
+print('------------BFS----------')
+graph.bfs('a')
+print('------------DFS----------')
+graph.dfs('a')
 
 
+'''
+BFS vs DFS
+
+                                           BFS                       DFS
+------------------------------------------------------------------------------------------------                                       
+HOw does it work internally?     it goes in breath first     it goes in depth firs
+------------------------------------------------------------------------------------------------                                       
+Which DS does it use internally?      Queue                        Stack
+------------------------------------------------------------------------------------------------    
+Time complexity                       O(V+E)                        O(V+E)
+------------------------------------------------------------------------------------------------    
+Space complexity                       O(V+E)                        O(V+E)
+------------------------------------------------------------------------------------------------    
+When to use?                    if we know that the target          if we already know that the 
+                                is close to the string point        target vertex is buried very deep
 
 
+'''
 
 
 
