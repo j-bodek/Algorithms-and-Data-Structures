@@ -67,8 +67,6 @@ print(graph.BFS('a','f'))
 
 
 '''
-Which graphs works with which algorithms?
-
 Graph Type                         |  BFS  |
 ---------------------------------------------------------------------------------------------------------------------------
 Unweighted - undirected            | WORKS |
