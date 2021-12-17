@@ -164,9 +164,50 @@ When to use?                    if we know that the target          if we alread
 
 '''
 
+'''
+Topological Sort
+'''
+# Topological Sort: Sorts given actions in such a way that if there is a dependency of one
+# action on another, then the dependent action always comes later than its parent actoin.
+
+from collections import defaultdict
+
+class Graph:
+    def __init__(self, numberofVertices):
+        self.graph = defaultdict(list)
+        self.numberofVertices = numberofVertices
+        
+    def addEdge(self, vertex, edge):
+        self.graph[vertex].append(edge)
+        
+    # topological helper function
+    def topologicalSortUtil(self, vertex, visited, stack):
+        visited.append(vertex)
+        for element in self.graph[vertex]:
+            if element not in visited:
+                self.topologicalSortUtil(element, visited, stack)
+        stack.insert(0, vertex)
+
+    def topologicalSort(self): # Time complexity => O(V+E) , Space complexity => O(V+E)
+        visitedElements = []
+        stack = []
+        for element in list(self.graph):
+            if element not in visitedElements:
+                self.topologicalSortUtil(element, visitedElements, stack)
+        print(stack)
 
 
+graph = Graph(8)
+graph.addEdge('A','C')
+graph.addEdge('C','E')
+graph.addEdge('E','H')
+graph.addEdge('E','F')
+graph.addEdge('F','G')
+graph.addEdge('B','D')
+graph.addEdge('B','C')
+graph.addEdge('D','F')
 
+graph.topologicalSort()
 
 
 
